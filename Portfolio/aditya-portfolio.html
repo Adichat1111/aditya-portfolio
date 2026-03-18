@@ -1,0 +1,2066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Aditya Chaturvedi – Mechatronics Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:auto;overflow-y:scroll;}
+
+/* ── DARK / LIGHT THEME ── */
+:root{
+  /* ── Adaptive Neutral Surfaces (semi-transparent) ── */
+  --bg:         #0b0f19;
+  --bg2:        rgba(15,21,35,0.98);
+  --card:       rgba(20,28,46,0.80);
+  --card2:      rgba(24,33,54,0.72);
+  --glass:      rgba(22,32,52,0.60);
+  --border:     rgba(68,100,148,0.38);
+  --border-hi:  rgba(79,142,247,0.55);
+
+  /* ── Accent: Electric Indigo / Royal Blue (WCAG AA on dark) ── */
+  --accent:        #5c8fff;
+  --accent-hi:     #7aadff;
+  --accent2:       #7c5ef7;
+  --accent-dim:    rgba(92,143,255,0.14);
+  --accent-glow:   rgba(92,143,255,0.22);
+  --accent-border: rgba(92,143,255,0.38);
+
+  /* ── Text (WCAG AAA ≥ 7:1 on --bg) ── */
+  --text:   #d4e2f8;
+  --muted:  #7a98c0;
+  --muted2: #4a6080;
+  --white:  #eaf2ff;
+
+  /* ── Nav / Shadow ── */
+  --nav-bg: rgba(9,13,25,0.88);
+  --shadow: 0 8px 32px rgba(0,0,0,0.55), 0 2px 8px rgba(0,0,0,0.3);
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.4);
+  --shadow-lift: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px var(--accent-border), 0 4px 32px var(--accent-glow);
+
+  /* ── Easing ── */
+  --ease: cubic-bezier(0.25,1,0.5,1);
+  --ease-bounce: cubic-bezier(0.34,1.56,0.64,1);
+  --dur: 0.26s;
+  --dur-fast: 0.16s;
+}
+[data-theme="light"]{
+  /* ── Warm slate-blue surfaces — NOT blinding white ── */
+  --bg:         #e8edf5;
+  --bg2:        rgba(220,228,242,0.98);
+  --card:       rgba(235,240,252,0.92);
+  --card2:      rgba(225,232,248,0.85);
+  --glass:      rgba(220,228,245,0.70);
+  --border:     rgba(120,155,210,0.40);
+  --border-hi:  rgba(37,99,235,0.55);
+
+  /* ── Accent: Deep Royal Blue ── */
+  --accent:        #1d4ed8;
+  --accent-hi:     #2563eb;
+  --accent2:       #6d28d9;
+  --accent-dim:    rgba(29,78,216,0.12);
+  --accent-glow:   rgba(29,78,216,0.20);
+  --accent-border: rgba(29,78,216,0.35);
+
+  /* ── Text ── */
+  --text:   #0d1b33;
+  --muted:  #3d5478;
+  --muted2: #6a84aa;
+  --white:  #0d1b33;
+
+  /* ── Nav / Shadow ── */
+  --nav-bg: rgba(215,224,242,0.94);
+  --shadow: 0 4px 20px rgba(13,27,51,0.14), 0 1px 4px rgba(13,27,51,0.08);
+  --shadow-card: 0 2px 12px rgba(13,27,51,0.10);
+  --shadow-lift: 0 16px 48px rgba(13,27,51,0.18), 0 0 0 1px var(--accent-border), 0 4px 24px var(--accent-glow);
+}
+
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:14px;line-height:1.6;overflow-x:hidden;transition:background var(--dur) var(--ease),color var(--dur) var(--ease)}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  background:var(--nav-bg);
+  backdrop-filter:blur(20px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+  border-bottom:1px solid var(--border);
+  padding:0 32px;height:60px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background var(--dur) var(--ease),border-color var(--dur) var(--ease),backdrop-filter var(--dur) var(--ease);
+}
+.nav-brand{display:flex;align-items:center;gap:12px}
+.nav-icon{
+  width:36px;height:36px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:14px;color:#fff;flex-shrink:0;
+  box-shadow:0 2px 10px var(--accent-glow);
+}
+.nav-name{font-weight:600;font-size:14px;color:var(--white);line-height:1.2}
+.nav-sub{font-size:11px;color:var(--muted);line-height:1.2}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-links a{
+  color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;
+  padding:6px 14px;border-radius:6px;
+  transition:all var(--dur-fast) var(--ease);position:relative;
+}
+.nav-links a:hover{color:var(--white);background:rgba(92,143,255,0.08);}
+.nav-links a.active{color:var(--white);background:rgba(128,128,128,0.1);}
+.nav-links a.active::after{
+  content:'';position:absolute;bottom:-2px;left:50%;transform:translateX(-50%);
+  width:4px;height:4px;background:var(--accent);border-radius:50%;
+}
+.nav-right{display:flex;align-items:center;gap:8px}
+.nav-btn{
+  display:flex;align-items:center;gap:6px;
+  padding:7px 14px;border-radius:7px;font-size:12px;font-weight:500;
+  text-decoration:none;transition:all var(--dur) var(--ease);border:1px solid var(--border);
+  color:var(--accent);background:transparent;cursor:pointer;
+}
+.nav-btn:hover{
+  border-color:var(--accent);background:var(--accent-dim);
+  transform:translateY(-2px);
+  box-shadow:0 4px 16px var(--accent-glow);
+}
+.nav-icon-btn{
+  width:34px;height:34px;border-radius:7px;border:1px solid var(--border);
+  background:transparent;display:flex;align-items:center;justify-content:center;
+  color:var(--muted);cursor:pointer;
+  transition:all var(--dur) var(--ease);font-size:14px;
+}
+.nav-icon-btn:hover{
+  border-color:var(--accent);color:var(--accent);
+  transform:scale(1.08);
+  background:var(--accent-dim);
+  box-shadow:0 0 12px var(--accent-glow);
+}
+.lang-toggle{
+  display:flex;align-items:center;gap:0;border:1px solid var(--border);border-radius:7px;overflow:hidden;
+}
+.lang-btn{
+  padding:6px 10px;font-size:11px;font-weight:600;cursor:pointer;
+  background:transparent;border:none;color:var(--muted);transition:all var(--dur) var(--ease);
+}
+.lang-btn.active{background:var(--accent);color:#111;}
+.lang-btn:hover:not(.active){background:var(--accent-dim);color:var(--accent);}
+
+/* SECTIONS */
+section{padding:80px 0}
+.container{max-width:1100px;margin:0 auto;padding:0 40px}
+.section-label{text-align:center;font-size:13px;color:var(--muted);margin-bottom:10px;letter-spacing:.02em;}
+.section-title{text-align:center;font-size:30px;font-weight:700;color:var(--white);margin-bottom:12px;letter-spacing:-.02em;}
+.section-subtitle{text-align:center;font-size:14px;color:var(--muted);max-width:620px;margin:0 auto 48px;line-height:1.7;}
+
+/* HERO */
+#about{padding-top:100px}
+.hero-wrap{display:grid;grid-template-columns:1fr 420px;gap:60px;align-items:start;padding-top:40px;}
+.hero-badge-wrap{
+  display:flex;margin-bottom:28px;
+  perspective:600px;
+}
+.badge-3d-scene{
+  perspective:600px;
+  perspective-origin:50% 50%;
+  display:inline-block;
+}
+/* ── 3D OPEN FOR INTERNSHIP BADGE ── */
+.hero-open-tag{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:11px 22px;
+  background:linear-gradient(145deg,rgba(34,197,94,0.18) 0%,rgba(34,197,94,0.07) 100%);
+  border:1.5px solid rgba(34,197,94,0.55);
+  border-radius:14px;
+  width:fit-content;
+  font-size:13px;
+  color:#22c55e;
+  font-weight:600;
+  position:relative;
+  overflow:hidden;
+  cursor:default;
+  transform-style:preserve-3d;
+  transform:translateY(0px) rotateX(2deg);
+  transition:transform 0.18s cubic-bezier(0.25,1,0.5,1),box-shadow 0.18s cubic-bezier(0.25,1,0.5,1);
+  box-shadow:
+    0 1px 0 1px rgba(34,197,94,0.12),
+    0 3px 0 2px rgba(34,197,94,0.08),
+    0 6px 0 3px rgba(34,197,94,0.05),
+    0 10px 28px rgba(34,197,94,0.22),
+    inset 0 1px 0 rgba(255,255,255,0.10);
+  animation:badge-float 3.5s ease-in-out infinite,badge-glow 4s ease-in-out infinite;
+}
+.badge-top-shine{
+  position:absolute;top:0;left:0;right:0;height:45%;
+  background:linear-gradient(180deg,rgba(255,255,255,0.13) 0%,transparent 100%);
+  border-radius:14px 14px 0 0;
+  pointer-events:none;
+}
+.hero-open-tag::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(105deg,transparent 35%,rgba(34,197,94,0.20) 50%,transparent 65%);
+  transform:translateX(-120%);
+  animation:shimmer-slide 3.2s ease-in-out infinite;
+  pointer-events:none;
+}
+.hero-open-tag::after{
+  content:'';
+  position:absolute;bottom:-6px;left:6px;right:6px;height:6px;
+  background:rgba(34,197,94,0.22);
+  border-radius:0 0 8px 8px;
+  filter:blur(4px);
+  pointer-events:none;
+  transform:translateY(0);
+}
+@keyframes badge-float{
+  0%,100%{transform:translateY(0px) rotateX(2deg);}
+  50%{transform:translateY(-6px) rotateX(-1deg);}
+}
+@keyframes badge-glow{
+  0%,100%{box-shadow:
+    0 1px 0 1px rgba(34,197,94,0.12),
+    0 3px 0 2px rgba(34,197,94,0.08),
+    0 6px 0 3px rgba(34,197,94,0.05),
+    0 10px 28px rgba(34,197,94,0.20),
+    inset 0 1px 0 rgba(255,255,255,0.10);}
+  50%{box-shadow:
+    0 1px 0 1px rgba(34,197,94,0.18),
+    0 3px 0 2px rgba(34,197,94,0.13),
+    0 6px 0 3px rgba(34,197,94,0.09),
+    0 14px 36px rgba(34,197,94,0.32),
+    inset 0 1px 0 rgba(255,255,255,0.15),
+    0 0 20px 2px rgba(34,197,94,0.12);}
+}
+@keyframes shimmer-slide{
+  0%{transform:translateX(-120%)}
+  60%,100%{transform:translateX(130%)}
+}
+@keyframes arrow-nudge{
+  0%,100%{transform:translateX(0) translateZ(6px)}
+  50%{transform:translateX(6px) translateZ(6px)}
+}
+.hero-open-tag:hover{
+  transform:translateY(-9px) rotateX(8deg) rotateY(-3deg) scale(1.04);
+  box-shadow:
+    0 2px 0 1px rgba(34,197,94,0.16),
+    0 5px 0 2px rgba(34,197,94,0.12),
+    0 9px 0 3px rgba(34,197,94,0.08),
+    0 14px 0 4px rgba(34,197,94,0.05),
+    0 20px 48px rgba(34,197,94,0.38),
+    inset 0 1px 0 rgba(255,255,255,0.18);
+  animation:none;
+}
+.hero-open-tag:active{
+  transform:translateY(-1px) rotateX(1deg) scale(0.98);
+  box-shadow:
+    0 1px 0 1px rgba(34,197,94,0.08),
+    0 4px 14px rgba(34,197,94,0.18);
+  transition-duration:0.07s;
+}
+.open-icon{font-size:16px;flex-shrink:0;filter:drop-shadow(0 2px 5px rgba(34,197,94,0.55));}
+.hero-open-tag strong{color:#22c55e;font-weight:800;text-shadow:0 0 14px rgba(34,197,94,0.45);}
+.open-arrow{
+  font-size:14px;color:#22c55e;font-weight:700;
+  animation:arrow-nudge 1.8s ease-in-out infinite;
+}
+[data-theme="light"] .hero-open-tag{
+  background:linear-gradient(145deg,rgba(22,163,74,0.14) 0%,rgba(22,163,74,0.05) 100%);
+  border-color:rgba(22,163,74,0.52);color:#15803d;
+  box-shadow:
+    0 1px 0 1px rgba(22,163,74,0.10),
+    0 3px 0 2px rgba(22,163,74,0.07),
+    0 6px 0 3px rgba(22,163,74,0.04),
+    0 10px 24px rgba(22,163,74,0.14),
+    inset 0 1px 0 rgba(255,255,255,0.50);
+}
+[data-theme="light"] .hero-open-tag strong{color:#15803d;text-shadow:none;}
+[data-theme="light"] .open-arrow{color:#15803d;}
+[data-theme="light"] .badge-top-shine{background:linear-gradient(180deg,rgba(255,255,255,0.55) 0%,transparent 100%);}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-name{font-size:22px;font-weight:700;color:var(--white);margin-bottom:6px;letter-spacing:-.01em;}
+.hero-role{font-size:24px;font-weight:700;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.hero-role .hero-role-icons{-webkit-text-fill-color:initial;background:none;}
+.hero-role-icons{display:flex;gap:6px;-webkit-text-fill-color:initial;background:none;}
+.hero-role-icons span{
+  width:28px;height:28px;border-radius:6px;background:var(--card);
+  border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:13px;
+}
+.hero-location{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);margin-bottom:22px;}
+.hero-desc{font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:28px;max-width:500px}
+.learning-stack-title{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2);margin-bottom:14px}
+.stack-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px}
+.stack-card{
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:14px 16px;transition:all var(--dur) var(--ease);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+.stack-card:hover{
+  border-color:var(--accent-border);
+  transform:translateY(-5px) scale(1.02);
+  box-shadow:var(--shadow-lift);
+  background:var(--glass);
+}
+.stack-card-title{font-size:13px;font-weight:600;color:var(--white);margin-bottom:4px}
+.stack-card-sub{font-size:11px;color:var(--muted)}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.btn-teal{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:10px 22px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;
+  border-radius:8px;font-size:13px;font-weight:600;letter-spacing:.02em;
+  text-decoration:none;border:none;cursor:pointer;transition:all var(--dur) var(--ease);
+  box-shadow:0 2px 12px var(--accent-glow);
+}
+.btn-teal:hover{transform:translateY(-2px);box-shadow:0 8px 28px var(--accent-glow);filter:brightness(1.08)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:10px 22px;background:var(--glass);color:var(--text);
+  border:1px solid var(--border);border-radius:8px;font-size:13px;font-weight:500;
+  text-decoration:none;cursor:pointer;
+  transition:all var(--dur) var(--ease);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+.btn-ghost:hover{
+  border-color:var(--accent);color:var(--accent);
+  transform:translateY(-4px) scale(1.02);
+  background:var(--accent-dim);
+  box-shadow:0 8px 28px var(--accent-glow);
+}
+.hero-contact-row{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.hero-contact-row a{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted);text-decoration:none;transition:color var(--dur-fast) var(--ease);}
+.hero-contact-row a:hover{color:var(--accent)}
+.social-row{display:flex;align-items:center;gap:8px;margin-top:14px}
+.social-row span{font-size:12px;color:var(--muted2)}
+.social-btn{
+  width:32px;height:32px;border:1px solid var(--border);border-radius:7px;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--muted);text-decoration:none;
+  transition:all var(--dur) var(--ease);font-size:14px;
+  position: relative; z-index: 50;
+}
+.social-btn:hover{
+  border-color:var(--accent);color:var(--accent);
+  transform:translateY(-4px) scale(1.12);
+  box-shadow:0 6px 20px var(--accent-glow);
+  background:var(--accent-dim);
+}
+
+/* PHOTO CARD */
+.photo-card-wrap{position:relative;animation:float 6s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.photo-card{
+  border-radius:16px;overflow:hidden;border:2px solid var(--border);
+  background:var(--card2);position:relative;
+  transition:border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease);
+}
+.photo-card:hover{
+  border-color:var(--accent-border);
+  transform:translateY(-6px) scale(1.01);
+  box-shadow:var(--shadow-lift);
+}
+.photo-card img{width:100%;display:block;object-fit:cover;height:480px;}
+.photo-badge{
+  position:absolute;bottom:18px;right:18px;
+  background:var(--accent);color:#111;
+  padding:7px 14px;border-radius:8px;font-size:12px;font-weight:700;
+}
+.photo-icon-corner{
+  position:absolute;top:16px;right:16px;
+  width:36px;height:36px;background:rgba(26,26,26,.8);
+  border:1px solid var(--border);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+}
+.photo-db-icon{
+  position:absolute;bottom:18px;left:18px;
+  width:40px;height:40px;background:rgba(26,26,26,.9);
+  border:1px solid var(--border);border-radius:10px;
+  display:flex;align-items:center;justify-content:center;font-size:18px;
+}
+.scroll-hint{display:flex;align-items:center;gap:8px;justify-content:flex-end;margin-top:20px;font-size:12px;color:var(--muted);}
+
+/* EDUCATION */
+#education{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.edu-cert-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.edu-col-title{font-size:16px;font-weight:600;color:var(--white);margin-bottom:16px}
+.edu-card{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:24px;transition:all var(--dur) var(--ease);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+.edu-card:hover{
+  border-color:var(--accent-border);
+  transform:translateY(-5px) scale(1.01);
+  box-shadow:var(--shadow-lift);
+  background:var(--glass);
+}
+.edu-card-name{font-size:16px;font-weight:700;color:var(--white);margin-bottom:6px}
+.edu-card-uni{font-size:12px;color:var(--accent);font-weight:600;margin-bottom:12px}
+.edu-card-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+.edu-meta-item{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted)}
+.edu-gpa{display:inline-block;padding:4px 14px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;border-radius:20px;font-size:11px;font-weight:700;margin-bottom:14px;letter-spacing:.03em;}
+.edu-desc{font-size:12px;color:var(--muted);line-height:1.7}
+.cert-list{display:flex;flex-direction:column;gap:10px}
+.cert-item{
+  display:flex;align-items:center;gap:14px;
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:16px 18px;transition:all var(--dur) var(--ease);
+}
+.cert-item:hover{
+  border-color:var(--accent-border);
+  transform:translateX(6px);
+  background:var(--glass);
+  box-shadow:4px 0 20px var(--accent-glow);
+}
+.cert-icon{width:34px;height:34px;border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.cert-info{flex:1}
+.cert-name{font-size:13px;font-weight:600;color:var(--white)}
+.cert-org{font-size:11px;color:var(--muted);margin-top:2px}
+.cert-year{font-size:12px;color:var(--muted);margin-left:auto}
+
+/* EXPERIENCE */
+#experience{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.exp-list{display:flex;flex-direction:column;gap:0}
+.exp-item{
+  display:grid;grid-template-columns:160px 1fr;gap:36px;
+  padding:30px 0;border-bottom:1px solid var(--border);
+  transition:all var(--dur) var(--ease);
+  border-radius:8px;padding-left:8px;margin-left:-8px;
+}
+.exp-item:hover{background:var(--accent-dim);border-color:var(--accent-border);}
+.exp-item:last-child{border-bottom:none}
+.exp-date{font-size:12px;color:var(--muted);line-height:1.7;padding-top:3px}
+.exp-role{font-size:16px;font-weight:700;color:var(--white);margin-bottom:4px}
+.exp-company{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--accent);font-weight:600;margin-bottom:14px;letter-spacing:.01em;}
+.exp-bullets{list-style:none}
+.exp-bullets li{font-size:13px;color:var(--muted);line-height:1.7;padding-left:16px;position:relative;margin-bottom:4px;}
+.exp-bullets li::before{content:'•';position:absolute;left:0;color:var(--accent)}
+
+/* PROJECTS */
+#projects{background:var(--bg)}
+.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.proj-card{
+  background:var(--card);border:1px solid var(--border);border-radius:14px;
+  overflow:hidden;transition:all var(--dur) var(--ease);
+  position:relative;
+}
+.proj-card::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(160deg,var(--accent-dim) 0%,transparent 60%);
+  opacity:0;transition:opacity var(--dur) var(--ease);
+  pointer-events:none;
+}
+.proj-card:hover{
+  border-color:var(--accent-border);
+  transform:translateY(-5px) scale(1.02);
+  box-shadow:var(--shadow-lift);
+  background:var(--glass);
+}
+.proj-card:hover::after{opacity:1;}
+.proj-img{width:100%;height:180px;object-fit:cover;display:block;background:linear-gradient(135deg,#2a3a4a,#1a2a3a);position:relative;overflow:hidden;}
+.proj-img-vr{background:linear-gradient(135deg,#1a1a3a,#2a1a4a)}
+.proj-img-robot{background:linear-gradient(135deg,#0a2a1a,#1a3a2a)}
+.proj-img-brake{background:linear-gradient(135deg,#2a1a0a,#3a2a1a)}
+.proj-img-soil{background:linear-gradient(135deg,#0a2a0a,#1a3a1a)}
+.proj-img-ai{background:linear-gradient(135deg,#0d1b3a,#1a0d2e)}
+.proj-year-badge{position:absolute;top:12px;right:12px;background:rgba(26,26,26,.85);color:var(--white);padding:3px 10px;border-radius:5px;font-size:11px;font-weight:600;}
+.proj-cat-badge{position:absolute;bottom:12px;left:12px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;padding:4px 10px;border-radius:5px;font-size:10px;font-weight:700;letter-spacing:.04em;}
+.proj-github-link{
+  position:absolute;top:12px;left:12px;
+  background:rgba(30, 41, 59, 0.85);color:var(--white);
+  padding:5px 10px;border-radius:6px;font-size:11px;font-weight:600;
+  text-decoration:none;display:flex;align-items:center;gap:5px;
+  transition:all var(--dur) var(--ease);
+  border:1px solid var(--border);
+  z-index: 100;
+}
+.proj-github-link:hover{
+  background:var(--accent);color:#fff;
+  transform:translateY(-2px) scale(1.04);
+  box-shadow:0 4px 14px var(--accent-glow);
+  border-color:var(--accent);
+}
+.proj-body{padding:20px}
+.proj-title{font-size:15px;font-weight:700;color:var(--white);margin-bottom:6px}
+.proj-desc{font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:14px}
+.proj-results-title{font-size:11px;font-weight:700;color:var(--white);margin-bottom:8px}
+.proj-results{list-style:none;margin-bottom:14px}
+.proj-results li{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted);margin-bottom:4px;}
+.proj-results li::before{content:'•';color:var(--accent)}
+.proj-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.proj-tag{padding:3px 9px;border:1px solid var(--border);border-radius:5px;font-size:11px;color:var(--muted);}
+.btn-view-code{
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  width:100%;padding:10px;background:rgba(30, 41, 59, 0.85);border:1px solid var(--border);
+  border-radius:7px;font-size:12px;font-weight:500;color:var(--text);
+  text-decoration:none;cursor:pointer;transition:all var(--dur) var(--ease);
+  position: relative;
+  z-index: 100;
+}
+.btn-view-code:hover{
+  border-color:var(--accent);color:var(--accent);
+  background:var(--accent-dim);
+  box-shadow:0 4px 14px var(--accent-glow);
+  transform:translateY(-2px);
+}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:40px 0 24px;}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:40px;padding-bottom:28px;border-bottom:1px solid var(--border);margin-bottom:24px;}
+.footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.footer-brand-icon{width:34px;height:34px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:#fff;box-shadow:0 2px 8px var(--accent-glow);}
+.footer-brand-name{font-weight:600;font-size:14px;color:var(--white)}
+.footer-desc{font-size:12px;color:var(--muted);line-height:1.7}
+.footer-col-title{font-size:13px;font-weight:600;color:var(--white);margin-bottom:14px}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:8px}
+.footer-links a{font-size:12px;color:var(--muted);text-decoration:none;
+  transition:all var(--dur-fast) var(--ease);display:inline-block;
+}
+.footer-links a:hover{color:var(--accent);transform:translateX(4px);}
+.footer-tech-tags{display:flex;flex-wrap:wrap;gap:6px}
+.footer-tech-tag{padding:3px 10px;border:1px solid var(--accent-border);border-radius:5px;font-size:11px;color:var(--accent);background:var(--accent-dim);font-weight:500;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--muted2)}
+
+/* MOBILE */
+@media(max-width:768px){
+  nav{padding:0 16px}
+  .nav-links{display:none}
+  .container{padding:0 20px}
+  .hero-wrap{grid-template-columns:1fr;gap:32px}
+  .stack-grid,.edu-cert-grid,.projects-grid,.contact-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .exp-item{grid-template-columns:1fr;gap:6px}
+  .form-row{grid-template-columns:1fr}
+  .photo-card-wrap{animation:none}
+  .lang-toggle{display:flex}
+}
+
+/* SCROLL REVEAL */
+.fade{
+  opacity:0;transform:translateY(28px);
+  transition:opacity 0.55s var(--ease),transform 0.55s var(--ease);
+  will-change:opacity,transform;
+}
+.fade.is-visible{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.08s}.d2{transition-delay:.18s}.d3{transition-delay:.28s}.d4{transition-delay:.40s}.d5{transition-delay:.52s}
+
+/* HIDDEN LANG */
+[data-lang-en],[data-lang-de]{display:block}
+body[data-lang="en"] [data-lang-de]{display:none}
+body[data-lang="de"] [data-lang-en]{display:none}
+span[data-lang-en],span[data-lang-de]{display:inline}
+body[data-lang="en"] span[data-lang-de]{display:none}
+body[data-lang="de"] span[data-lang-en]{display:none}
+
+/* ── PAGE AMBIENT BACKGROUND ── */
+body::before{
+  content:'';position:fixed;inset:0;z-index:-1;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 10%, rgba(92,143,255,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(124,94,247,0.06) 0%, transparent 55%);
+  pointer-events:none;
+}
+
+/* ── HERO SECTION bg polish ── */
+#about{
+  background:linear-gradient(180deg,rgba(92,143,255,0.04) 0%,transparent 50%);
+}
+
+/* ── SECTION LABEL upgrade ── */
+.section-label{
+  display:inline-block;
+  font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent);
+  padding:3px 12px;border:1px solid var(--accent-border);
+  border-radius:20px;background:var(--accent-dim);
+  margin-bottom:14px;
+}
+
+/* ── NAV active dot upgrade ── */
+.nav-links a.active::after{
+  content:'';position:absolute;bottom:-2px;left:50%;transform:translateX(-50%);
+  width:20px;height:2px;background:var(--accent);border-radius:2px;
+  box-shadow:0 0 8px var(--accent-glow);
+}
+
+/* ── HERO ROLE gradient fix for icons ── */
+.hero-role-icons{display:flex;gap:6px;background:none;-webkit-text-fill-color:initial;}
+.hero-role-icons span{
+  width:28px;height:28px;border-radius:6px;background:var(--card);
+  border:1px solid var(--border);display:flex;align-items:center;justify-content:center;
+  font-size:13px;transition:all var(--dur) var(--ease);
+}
+.hero-role-icons span:hover{
+  border-color:var(--accent-border);background:var(--accent-dim);
+  transform:scale(1.12);
+}
+
+/* ── STACK CARD title color ── */
+.stack-card-title{font-size:13px;font-weight:600;color:var(--white);margin-bottom:4px}
+
+/* ── HERO CONTACT ROW ── */
+.hero-contact-row a:hover{color:var(--accent);transform:translateY(-1px);display:inline-flex;}
+
+/* ── FOOTER upgrade ── */
+footer{
+  background:var(--bg2);border-top:1px solid var(--border);padding:40px 0 24px;
+  backdrop-filter:blur(12px);
+}
+
+/* ── SCROLLBAR upgrade ── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--accent-border);border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+
+/* ── SELECTION color ── */
+::selection{background:var(--accent-dim);color:var(--accent-hi);}
+
+/* ── LANG TOGGLE upgrade ── */
+.lang-toggle{
+  display:flex;align-items:center;gap:0;
+  border:1px solid var(--border);border-radius:8px;overflow:hidden;
+  background:var(--card);
+  transition:border-color var(--dur) var(--ease);
+}
+.lang-toggle:hover{border-color:var(--accent-border);}
+.lang-btn{
+  padding:6px 11px;font-size:11px;font-weight:700;letter-spacing:.04em;cursor:pointer;
+  background:transparent;border:none;color:var(--muted);transition:all var(--dur-fast) var(--ease);
+}
+.lang-btn.active{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;}
+.lang-btn:hover:not(.active){background:var(--accent-dim);color:var(--accent);}
+
+/* ── CERT YEAR ── */
+.cert-year{font-size:12px;color:var(--accent);margin-left:auto;font-weight:600;}
+
+/* ── CORE TECHNOLOGIES in Profile ── */
+.core-tech-wrap{margin-bottom:24px;}
+.core-tech-tags{
+  display:flex;flex-wrap:wrap;gap:8px;
+}
+.core-tech-tag{
+  display:inline-flex;align-items:center;
+  padding:5px 13px;
+  background:var(--card);
+  border:1px solid var(--accent-border);
+  border-radius:20px;
+  font-size:12px;font-weight:600;
+  color:var(--accent);
+  letter-spacing:.02em;
+  transition:all var(--dur) var(--ease);
+}
+.core-tech-tag:hover{
+  background:var(--accent-dim);
+  border-color:var(--accent);
+  transform:translateY(-2px) scale(1.04);
+  box-shadow:0 4px 14px var(--accent-glow);
+}
+
+/* ══════════════════════════════════════════
+   FULL 3D PORTFOLIO ENHANCEMENTS
+   ══════════════════════════════════════════ */
+
+/* ── 3D PERSPECTIVE ROOT ── */
+.hero-wrap {
+  transform-style: preserve-3d;
+}
+
+/* ── FLOATING PARTICLES BACKGROUND ── */
+.particles-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0;
+  animation: particle-float linear infinite;
+  filter: blur(1px);
+}
+
+@keyframes particle-float {
+  0%   { transform: translateY(100vh) translateZ(0) scale(0); opacity: 0; }
+  10%  { opacity: 0.6; }
+  90%  { opacity: 0.4; }
+  100% { transform: translateY(-20px) translateZ(100px) scale(1.5); opacity: 0; }
+}
+
+/* ── 3D HERO SECTION ── */
+.hero-3d-scene {
+  perspective: 1200px;
+  perspective-origin: 50% 30%;
+}
+.hero-left-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+}
+.hero-photo-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+}
+
+/* ── 3D FLOATING SHAPES ── */
+.shape-3d {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  transform-style: preserve-3d;
+}
+.shape-cube {
+  width: 40px; height: 40px;
+  border: 1.5px solid rgba(92,143,255,0.25);
+  animation: cube-spin 12s linear infinite;
+  transform-style: preserve-3d;
+}
+.shape-ring {
+  width: 60px; height: 60px;
+  border: 2px solid rgba(124,94,247,0.2);
+  border-radius: 50%;
+  animation: ring-wobble 8s ease-in-out infinite;
+}
+.shape-triangle {
+  width: 0; height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 35px solid rgba(92,143,255,0.15);
+  animation: tri-float 10s ease-in-out infinite;
+}
+@keyframes cube-spin {
+  0%   { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+  100% { transform: rotateX(360deg) rotateY(240deg) rotateZ(120deg); }
+}
+@keyframes ring-wobble {
+  0%,100% { transform: rotateX(20deg) rotateZ(0deg) translateY(0); }
+  33%     { transform: rotateX(-15deg) rotateZ(120deg) translateY(-15px); }
+  66%     { transform: rotateX(10deg) rotateZ(240deg) translateY(8px); }
+}
+@keyframes tri-float {
+  0%,100% { transform: translateY(0) rotateZ(0deg) rotateX(0deg); }
+  50%     { transform: translateY(-20px) rotateZ(180deg) rotateX(30deg); }
+}
+
+/* ── 3D SECTION TITLES ── */
+.section-title-3d {
+  text-shadow:
+    1px 1px 0 var(--accent-border),
+    2px 2px 0 rgba(92,143,255,0.15),
+    3px 3px 0 rgba(92,143,255,0.10),
+    4px 4px 8px rgba(0,0,0,0.3);
+  transform: translateZ(0);
+  transition: text-shadow 0.3s ease, transform 0.3s ease;
+}
+.section-title-3d:hover {
+  text-shadow:
+    1px 1px 0 var(--accent-border),
+    2px 2px 0 rgba(92,143,255,0.2),
+    4px 4px 0 rgba(92,143,255,0.15),
+    6px 6px 0 rgba(92,143,255,0.10),
+    8px 8px 16px rgba(0,0,0,0.4);
+  transform: translateY(-2px) translateZ(10px);
+}
+
+/* ── 3D STACK CARDS ── */
+.stack-card {
+  transform-style: preserve-3d;
+  transform-origin: center center;
+}
+.stack-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease);
+}
+.stack-card:hover::after { opacity: 1; }
+
+/* ── 3D PROJECT CARD DEPTH (Crucial Fix for Clicks) ── */
+.proj-card {
+  transform-style: preserve-3d;
+}
+.proj-card .proj-body {
+  transform: translateZ(8px);
+  transform-style: preserve-3d;
+  position: relative;
+  z-index: 2;
+  pointer-events: auto; /* Ensure body catches events */
+}
+.proj-card .proj-img {
+  transform: translateZ(0px);
+  transform-style: preserve-3d; /* Allows buttons inside to pop out */
+}
+.proj-card .proj-title {
+  transform: translateZ(4px);
+  display: block;
+  position: relative;
+}
+.proj-card .proj-cat-badge, .proj-card .proj-year-badge {
+  transform: translateZ(12px);
+}
+.proj-card .proj-github-link, .proj-card .btn-view-code {
+  transform: translateZ(20px); /* Highest Z translation */
+  z-index: 100; /* Highest Z layer */
+  pointer-events: auto;
+}
+.proj-card .proj-github-link:hover {
+  transform: translateZ(20px) translateY(-2px) scale(1.04);
+}
+.proj-card .btn-view-code:hover {
+  transform: translateZ(20px) translateY(-2px);
+}
+
+/* ── 3D EDU CARDS ── */
+.edu-card {
+  transform-style: preserve-3d;
+}
+.edu-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-border), transparent);
+  border-radius: 12px;
+}
+
+/* ── 3D NAV DEPTH ── */
+nav {
+  transform-style: preserve-3d;
+  box-shadow:
+    0 1px 0 rgba(92,143,255,0.1),
+    0 4px 0 rgba(92,143,255,0.05),
+    0 8px 32px rgba(0,0,0,0.4);
+}
+
+/* ── 3D PHOTO CARD ── */
+.photo-card {
+  transform-style: preserve-3d;
+}
+.photo-card img {
+  transform: translateZ(0);
+}
+.photo-badge {
+  transform: translateZ(20px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4), 0 0 0 1px var(--accent-border);
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff;
+}
+.photo-icon-corner {
+  transform: translateZ(20px);
+}
+.photo-db-icon {
+  transform: translateZ(20px);
+}
+
+/* ── 3D CERT ITEMS ── */
+.cert-item {
+  transform-style: preserve-3d;
+}
+.cert-icon {
+  transform: translateZ(4px);
+}
+
+/* ── 3D EXP ITEM ── */
+.exp-item {
+  transform-style: preserve-3d;
+  position: relative;
+}
+.exp-item::before {
+  content: '';
+  position: absolute;
+  left: -8px; top: 0; bottom: 0; width: 2px;
+  background: linear-gradient(180deg, transparent, var(--accent-border), transparent);
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease);
+  border-radius: 2px;
+}
+.exp-item:hover::before { opacity: 1; }
+
+/* ── 3D FOOTER ── */
+footer {
+  position: relative;
+}
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--accent-border) 30%, var(--accent2) 70%, transparent 100%);
+}
+
+/* ── 3D SCROLL PROGRESS BAR ── */
+#scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  z-index: 9999;
+  width: 0%;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* ── 3D CURSOR GLOW ── */
+#cursor-glow {
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(92,143,255,0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+}
+
+/* ── 3D GRID OVERLAY ── */
+.grid-3d-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(92,143,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(92,143,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+}
+
+/* ── HERO DEPTH LAYERS ── */
+.hero-depth-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* ── LIGHT MODE 3D adjustments ── */
+[data-theme="light"] .section-title-3d {
+  text-shadow:
+    1px 1px 0 rgba(29,78,216,0.2),
+    2px 2px 0 rgba(29,78,216,0.12),
+    3px 3px 8px rgba(0,0,0,0.08);
+}
+[data-theme="light"] #cursor-glow {
+  background: radial-gradient(circle, rgba(29,78,216,0.08) 0%, transparent 70%);
+}
+[data-theme="light"] .grid-3d-overlay {
+  background-image:
+    linear-gradient(rgba(29,78,216,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(29,78,216,0.07) 1px, transparent 1px);
+}
+[data-theme="light"] body::before {
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 10%, rgba(29,78,216,0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(109,40,217,0.08) 0%, transparent 55%);
+}
+[data-theme="light"] #about {
+  background: linear-gradient(180deg, rgba(29,78,216,0.06) 0%, transparent 50%);
+}
+[data-theme="light"] .btn-view-code, [data-theme="light"] .proj-github-link {
+  background: rgba(255,255,255,0.9);
+}
+
+/* ══════════════════════════════════════════
+   ENHANCED 3D — DEEPER IMMERSION
+   ══════════════════════════════════════════ */
+
+/* ── 3D HOLOGRAPHIC CARD SHINE ── */
+.proj-card .proj-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 20%,
+    rgba(255,255,255,0.04) 35%,
+    rgba(255,255,255,0.12) 50%,
+    rgba(255,255,255,0.04) 65%,
+    transparent 80%
+  );
+  background-size: 200% 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 3;
+  animation: none;
+}
+.proj-card:hover .proj-img::after {
+  opacity: 1;
+  animation: holo-sweep 1.5s ease-in-out;
+}
+@keyframes holo-sweep {
+  0%   { background-position: 200% 0; opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { background-position: -200% 0; opacity: 0; }
+}
+
+/* ── 3D SECTION DEPTH PLANES ── */
+section {
+  position: relative;
+  transform-style: preserve-3d;
+}
+section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── 3D FLOATING NAV LOGO ── */
+.nav-icon {
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+}
+.nav-icon:hover {
+  transform: rotateY(20deg) rotateX(-10deg) scale(1.15) translateZ(4px);
+  box-shadow: -4px 4px 20px var(--accent-glow), 4px -4px 12px rgba(124,94,247,0.2);
+}
+
+/* ── 3D SOCIAL BUTTONS ── */
+.social-btn {
+  transform-style: preserve-3d;
+  transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+}
+.social-btn:hover {
+  transform: translateZ(12px) rotateX(-15deg) translateY(-6px) scale(1.15);
+  box-shadow: 0 12px 24px var(--accent-glow), 0 4px 8px rgba(0,0,0,0.3);
+}
+
+/* ── 3D STACK CARD DEPTH FACE ── */
+.stack-card {
+  box-shadow:
+    0 1px 0 rgba(92,143,255,0.08),
+    0 3px 0 rgba(92,143,255,0.05),
+    0 6px 16px rgba(0,0,0,0.2);
+  transition: all 0.25s cubic-bezier(0.25,1,0.5,1);
+}
+
+/* ── 3D GPA PILL DEPTH ── */
+.edu-gpa {
+  box-shadow:
+    0 2px 0 rgba(92,143,255,0.2),
+    0 4px 12px rgba(92,143,255,0.25);
+  transform: translateZ(6px);
+  display: inline-block;
+}
+
+/* ── 3D HERO NAME DEPTH ── */
+.hero-name {
+  text-shadow:
+    1px 1px 0 rgba(92,143,255,0.15),
+    2px 2px 0 rgba(92,143,255,0.10),
+    3px 3px 8px rgba(0,0,0,0.3);
+  transition: text-shadow 0.3s ease;
+}
+.hero-name:hover {
+  text-shadow:
+    2px 2px 0 rgba(92,143,255,0.2),
+    4px 4px 0 rgba(92,143,255,0.12),
+    6px 6px 16px rgba(0,0,0,0.4);
+}
+
+/* ── 3D BTN TEAL DEPTH ── */
+.btn-teal {
+  transform-style: preserve-3d;
+  box-shadow:
+    0 2px 0 rgba(0,0,0,0.3),
+    0 4px 0 rgba(0,0,0,0.2),
+    0 6px 20px var(--accent-glow);
+  transition: all 0.2s cubic-bezier(0.25,1,0.5,1);
+}
+.btn-teal:hover {
+  transform: translateY(-4px) translateZ(8px);
+  box-shadow:
+    0 6px 0 rgba(0,0,0,0.25),
+    0 8px 0 rgba(0,0,0,0.15),
+    0 12px 32px var(--accent-glow);
+}
+.btn-teal:active {
+  transform: translateY(0) translateZ(2px);
+  box-shadow:
+    0 1px 0 rgba(0,0,0,0.3),
+    0 4px 12px var(--accent-glow);
+}
+
+/* ── 3D NAV BUTTON DEPTH ── */
+.nav-btn {
+  transform-style: preserve-3d;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.nav-btn:hover {
+  transform: translateY(-2px) translateZ(4px);
+  box-shadow: 0 6px 16px var(--accent-glow), 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* ── 3D PHOTO CARD OUTER SHADOW ── */
+.photo-card-wrap {
+  filter: drop-shadow(0 24px 48px rgba(0,0,0,0.4)) drop-shadow(0 8px 16px rgba(92,143,255,0.15));
+}
+
+/* ── 3D MOUSE-TRACK SHINE on proj cards ── */
+.proj-card .proj-shine {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  background: radial-gradient(
+    circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255,255,255,0.08) 0%,
+    transparent 60%
+  );
+}
+.proj-card:hover .proj-shine { opacity: 1; }
+</style>
+</head>
+<body data-lang="en">
+
+<!-- 3D SCROLL PROGRESS -->
+<div id="scroll-progress"></div>
+
+<!-- 3D CURSOR GLOW -->
+<div id="cursor-glow"></div>
+
+<!-- 3D GRID OVERLAY -->
+<div class="grid-3d-overlay"></div>
+
+<!-- 3D FLOATING PARTICLES -->
+<div class="particles-bg" id="particlesBg"></div>
+
+<!-- 3D FLOATING SHAPES -->
+<div class="shape-3d shape-cube" style="top:15%;left:5%;"></div>
+<div class="shape-3d shape-ring" style="top:30%;right:6%;"></div>
+<div class="shape-3d shape-triangle" style="top:60%;left:3%;"></div>
+<div class="shape-3d shape-cube" style="top:75%;right:4%;transform:scale(0.6);"></div>
+<div class="shape-3d shape-ring" style="top:85%;left:8%;transform:scale(0.7);"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-icon">AC</div>
+    <div>
+      <div class="nav-name">Aditya Chaturvedi</div>
+      <div class="nav-sub">Mechatronics Engineer</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="#about" class="active"><span data-lang-en>About</span><span data-lang-de>Über mich</span></a>
+    <a href="#projects"><span data-lang-en>Projects</span><span data-lang-de>Projekte</span></a>
+    <a href="#experience"><span data-lang-en>Experience</span><span data-lang-de>Erfahrung</span></a>
+  </div>
+  <div class="nav-right">
+    <!-- Language Toggle -->
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btnEN" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btnDE" onclick="setLang('de')">DE</button>
+    </div>
+    <!-- Theme Toggle -->
+    <button class="nav-icon-btn" id="themeToggle" title="Toggle theme" onclick="toggleTheme()">☀</button>
+    <a href="Aditya_Chaturvedi_CV.pdf" download="Aditya_Chaturvedi_CV.pdf" class="nav-btn">
+      <span>📄</span>
+      <span data-lang-en>Download CV</span>
+      <span data-lang-de>Lebenslauf</span>
+    </a>
+  </div>
+</nav>
+
+<!-- HERO / ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="hero-3d-scene"><div class="hero-wrap" id="heroWrap">
+      <!-- LEFT -->
+      <div>
+        <div class="hero-badge-wrap fade d1">
+          <div class="badge-3d-scene">
+            <div class="hero-open-tag" id="heroBadge3d">
+              <span class="badge-top-shine"></span>
+              <span class="open-icon">🎯</span>
+              <span data-lang-en>Open for <strong>Internship</strong> &amp; <strong>Thesis</strong></span>
+              <span data-lang-de>Offen für <strong>Praktikum</strong> &amp; <strong>Abschlussarbeit</strong></span>
+              <span class="open-arrow">→</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-name fade d2">Aditya Chaturvedi</div>
+        <div class="hero-role fade d2">
+          <span data-lang-en>Mechatronics Engineer</span>
+          <span data-lang-de>Mechatroniker</span>
+          <div class="hero-role-icons">
+            <span title="CAD">🔧</span>
+            <span title="Robotics">🤖</span>
+            <span title="XR">🥽</span>
+          </div>
+        </div>
+        <div class="hero-location fade d3">
+          <span>📍</span> Munich / Cham, Germany &nbsp;•&nbsp; M.Eng. Candidate 2026
+        </div>
+        <p class="hero-desc fade d3">
+          <span data-lang-en>Mechatronics Engineer with a solid foundation in Mechanical Engineering and a strong passion for robotics, automation, and intelligent systems. Currently pursuing a Master's degree in Mechatronics and Cyber-Physical Systems at Deggendorf Institute of Technology, Germany.</span>
+          <span data-lang-de>Mechatroniker mit fundiertem Hintergrund im Maschinenbau und starker Leidenschaft für Robotik, Automatisierung und intelligente Systeme. Derzeit absolviere ich einen Master in Mechatronik und Cyber-Physical Systems an der Technischen Hochschule Deggendorf.</span>
+        </p>
+        <div class="learning-stack-title fade d4">ENGINEERING STACK</div>
+        <div class="stack-grid fade d4">
+          <div class="stack-card">
+            <div class="stack-card-title">CAD / CAE</div>
+            <div class="stack-card-sub">SolidWorks • CATIA V5 • ANSYS</div>
+          </div>
+          <div class="stack-card">
+            <div class="stack-card-title">Robotics</div>
+            <div class="stack-card-sub">ROS / ROS2 • Gazebo • Python</div>
+          </div>
+          <div class="stack-card">
+            <div class="stack-card-title">XR / VR Dev</div>
+            <div class="stack-card-sub">Unity • Blender • Meta Quest 3</div>
+          </div>
+          <div class="stack-card">
+            <div class="stack-card-title">AI / Vision</div>
+            <div class="stack-card-sub">Claude API • Python • OpenCV</div>
+          </div>
+        </div>
+
+        <!-- CORE TECHNOLOGIES IN PROFILE -->
+        <div class="core-tech-wrap fade d4">
+          <div class="learning-stack-title">CORE TECHNOLOGIES</div>
+          <div class="core-tech-tags">
+            <span class="core-tech-tag">SolidWorks</span>
+            <span class="core-tech-tag">ROS2</span>
+            <span class="core-tech-tag">ANSYS</span>
+            <span class="core-tech-tag">Unity</span>
+            <span class="core-tech-tag">Python</span>
+            <span class="core-tech-tag">MATLAB</span>
+            <span class="core-tech-tag">Blender</span>
+            <span class="core-tech-tag">Claude API</span>
+            <span class="core-tech-tag">CATIA V5</span>
+            <span class="core-tech-tag">Gazebo</span>
+            <span class="core-tech-tag">OpenCV</span>
+            <span class="core-tech-tag">Simulink</span>
+          </div>
+        </div>
+
+        <div class="hero-cta fade d5">
+          <a href="#projects" class="btn-teal">
+            <span>📂</span>
+            <span data-lang-en>Explore Projects ↓</span>
+            <span data-lang-de>Projekte erkunden ↓</span>
+          </a>
+
+        </div>
+        <div class="hero-contact-row fade d5">
+          <a href="/cdn-cgi/l/email-protection#ea8b8e839e938bc4dbdfdedadadbdbaa8d878b8386c4898587">✉ <span class="__cf_email__" data-cfemail="3455505d404d551a05010004040505745359555d581a575b59">aditya.1540011@gmail.com</span></a>
+      
+        </div>
+        <div class="social-row fade d5">
+          <span><span data-lang-en>Connect with me:</span><span data-lang-de>Verbinden:</span></span>
+          <a href="https://www.linkedin.com/in/aditya1540011" target="_blank" class="social-btn" title="LinkedIn">in</a>
+          <a href="https://github.com/Adichat1111" target="_blank" class="social-btn" title="GitHub">⌥</a>
+        </div>
+      </div>
+      <!-- RIGHT PHOTO CARD -->
+      <div>
+        <div class="photo-card-wrap">
+          <div class="photo-card">
+            <img src="image/profile.jpeg" alt="Aditya Chaturvedi"/>
+            <div class="photo-icon-corner">⚙</div>
+            <div class="photo-db-icon">🤖</div>
+            <div class="photo-badge">Mechatronics Engineer</div>
+          </div>
+          <div class="scroll-hint">
+            <span data-lang-en>Explore Technical Portfolio ↓</span>
+            <span data-lang-de>Technisches Portfolio erkunden ↓</span>
+          </div>
+        </div>
+      </div>
+    </div></div><!-- /hero-3d-scene -->
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <div class="section-label fade">
+      <span data-lang-en>Learning Journey</span>
+      <span data-lang-de>Bildungsweg</span>
+    </div>
+    <h2 class="section-title section-title-3d fade">
+      <span data-lang-en>Education &amp; Certifications</span>
+      <span data-lang-de>Ausbildung &amp; Zertifikate</span>
+    </h2>
+    <p class="section-subtitle fade">
+      <span data-lang-en>Building expertise in mechatronics, robotics and automation through academic excellence and continuous learning.</span>
+      <span data-lang-de>Aufbau von Expertise in Mechatronik, Robotik und Automatisierung durch akademische Exzellenz und kontinuierliches Lernen.</span>
+    </p>
+    <div class="edu-cert-grid">
+      <div>
+        <div class="edu-col-title fade">
+          <span data-lang-en>Education</span>
+          <span data-lang-de>Ausbildung</span>
+        </div>
+        <div class="edu-card fade d1">
+          <div class="edu-card-name">M.Eng. Mechatronics &amp; Cyber-Physical Systems</div>
+          <div class="edu-card-uni">Deggendorf Institute of Technology</div>
+          <div class="edu-card-meta">
+            <span class="edu-meta-item">📍 Cham, Germany</span>
+            <span class="edu-meta-item">📅 March 2024 – Present</span>
+          </div>
+          <div class="edu-gpa">Current GPA: 1.8 / 5.0 (German scale)</div>
+          <p class="edu-desc">
+            <span data-lang-en>Specializing in Robotics &amp; Automation, Human-Machine Interfaces, Additive Manufacturing, and System Modeling. Actively applying knowledge through hands-on projects and case studies.</span>
+            <span data-lang-de>Spezialisierung in Robotik &amp; Automatisierung, Mensch-Maschine-Schnittstellen, Additive Fertigung und Systemmodellierung.</span>
+          </p>
+        </div>
+        <br/>
+        <div class="edu-card fade d2">
+          <div class="edu-card-name">B.Tech Mechanical Engineering</div>
+          <div class="edu-card-uni">KIET Group of Institutions</div>
+          <div class="edu-card-meta">
+            <span class="edu-meta-item">📍 Ghaziabad, India</span>
+            <span class="edu-meta-item">📅 2015 – 2019</span>
+          </div>
+          <div class="edu-gpa">Final Grade: 8.0 / 10</div>
+          <p class="edu-desc">
+            <span data-lang-en>Strength of Materials, Machine Design, Kinematics &amp; Dynamics. Competed in SAEINDIA BAJA — All-India Rank #7 in 2018.</span>
+            <span data-lang-de>Werkstoffkunde, Maschinenkonstruktion, Kinematik &amp; Dynamik. SAEINDIA BAJA – Gesamtindischer Rang #7 im Jahr 2018.</span>
+          </p>
+        </div>
+      </div>
+      <div>
+        <div class="edu-col-title fade">
+          <span data-lang-en>Certifications</span>
+          <span data-lang-de>Zertifikate</span>
+        </div>
+        <div class="cert-list">
+          <a href="https://verify.skilljar.com/c/x4hkocjpa59h" target="_blank" class="cert-item fade d1" style="text-decoration:none;cursor:pointer;"><div class="cert-icon">🎓</div><div class="cert-info"><div class="cert-name">Building with the Claude API</div><div class="cert-org">Anthropic</div></div><div class="cert-year" style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">2025<span style="font-size:10px;color:var(--teal);white-space:nowrap;">View ↗</span></div></a>
+          <a href="https://verify.skilljar.com/c/bhuu4uaf29ze" target="_blank" class="cert-item fade d2" style="text-decoration:none;cursor:pointer;"><div class="cert-icon">🎓</div><div class="cert-info"><div class="cert-name">AI Fluency for Students</div><div class="cert-org">Certificate of Completion</div></div><div class="cert-year" style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">2025<span style="font-size:10px;color:var(--teal);white-space:nowrap;">View ↗</span></div></a>
+          <a href="https://www.udemy.com/certificate/UC-86d0c490-7911-4cc2-a7de-a0bad724c934/" target="_blank" class="cert-item fade d3" style="text-decoration:none;cursor:pointer;"><div class="cert-icon">🤖</div><div class="cert-info"><div class="cert-name">ROS 2 for Beginners (ROS Jazzy)</div><div class="cert-org">Udemy</div></div><div class="cert-year" style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">2025<span style="font-size:10px;color:var(--teal);white-space:nowrap;">View ↗</span></div></a>
+          <div class="cert-item fade d4"><div class="cert-icon">🏆</div><div class="cert-info"><div class="cert-name">All-India Rank #07 – SAEINDIA BAJA</div><div class="cert-org">1st in CAE &amp; Sled Pull</div></div><div class="cert-year">2018</div></div>
+          <div class="cert-item fade d5"><div class="cert-icon">🥈</div><div class="cert-info"><div class="cert-name">All-India Rank #24 – SAEINDIA BAJA</div><div class="cert-org">3rd in Cost Event</div></div><div class="cert-year">2017</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label fade">Work History</div>
+    <h2 class="section-title section-title-3d fade">
+      <span data-lang-en>Professional Experience</span>
+      <span data-lang-de>Berufliche Erfahrung</span>
+    </h2>
+    <p class="section-subtitle fade">
+      <span data-lang-en>Industry experience across automotive manufacturing, production supervision, and engineering training in Germany and India.</span>
+      <span data-lang-de>Industrieerfahrung in der Automobilfertigung, Produktionsleitung und technischen Ausbildung in Deutschland und Indien.</span>
+    </p>
+    <div class="exp-list">
+      <div class="exp-item fade">
+        <div class="exp-date">Jun 2025 – Oct 2025</div>
+        <div>
+          <div class="exp-role"><span data-lang-en>Production Employee</span><span data-lang-de>Produktionsmitarbeiter</span></div>
+          <div class="exp-company">🏭 BMW Group, Werk Regensburg — Germany</div>
+          <ul class="exp-bullets">
+            <li><span data-lang-en>Assembled engine components on the Motorband (engine assembly line) under takt-time conditions</span><span data-lang-de>Montage von Motorkomponenten am Motorband unter Taktzeit-Bedingungen</span></li>
+            <li><span data-lang-en>Performed visual and functional quality checks to BMW premium technical specifications</span><span data-lang-de>Durchführung von Sicht- und Funktionsprüfungen nach BMW-Qualitätsstandards</span></li>
+            <li><span data-lang-en>Collaborated in multi-shift environment to maintain production flow and meet daily output targets</span><span data-lang-de>Zusammenarbeit im Mehrschichtbetrieb zur Aufrechterhaltung des Produktionsflusses</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item fade">
+        <div class="exp-date">Jul 2024 – Sep 2024</div>
+        <div>
+          <div class="exp-role"><span data-lang-en>Production Employee (Holiday Job)</span><span data-lang-de>Produktionsmitarbeiter (Ferienjob)</span></div>
+          <div class="exp-company">🏭 BMW Group, Werk Regensburg — Germany</div>
+          <ul class="exp-bullets">
+            <li><span data-lang-en>Supported automotive series production with assembly line processes and QA checks</span><span data-lang-de>Unterstützung der Serienproduktion mit Montageprozessen und QA-Prüfungen</span></li>
+            <li><span data-lang-en>Contributed to rework activities within a lean manufacturing environment</span><span data-lang-de>Mitarbeit bei Nacharbeiten in einem Lean-Produktionsumfeld</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item fade">
+        <div class="exp-date">Jul 2023 – Feb 2024</div>
+        <div>
+          <div class="exp-role"><span data-lang-en>Production Supervisor</span><span data-lang-de>Produktionsleiter</span></div>
+          <div class="exp-company">🔧 Rajshree Engineering Pvt. Ltd. (VECV) — Pithampur, India</div>
+          <ul class="exp-bullets">
+            <li><span data-lang-en>Supervised front axle assembly for commercial vehicles; led daily defect analysis using KAIZEN and PDCA</span><span data-lang-de>Überwachung der Vorderachsenmontage für Nutzfahrzeuge; tägliche Fehleranalyse mit KAIZEN und PDCA</span></li>
+            <li><span data-lang-en>Managed 4M resource planning to achieve safety, production, and quality targets</span><span data-lang-de>4M-Ressourcenplanung zur Erreichung von Sicherheits-, Produktions- und Qualitätszielen</span></li>
+            <li><span data-lang-en>Responsible for weekly TOP FIVE DEFECT reports and action plans for quality improvement</span><span data-lang-de>Verantwortlich für wöchentliche TOP-FÜNF-DEFEKT-Berichte und Qualitätsverbesserungsmaßnahmen</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item fade">
+        <div class="exp-date">Mar 2022 – May 2023</div>
+        <div>
+          <div class="exp-role"><span data-lang-en>Graduate Engineer Trainee</span><span data-lang-de>Ingenieur-Trainee</span></div>
+          <div class="exp-company">🚗 TATA Motors — Pune, India</div>
+          <ul class="exp-bullets">
+            <li><span data-lang-en>Assisted in design, testing and validation of new components and systems</span><span data-lang-de>Unterstützung bei Design, Test und Validierung neuer Komponenten und Systeme</span></li>
+            <li><span data-lang-en>Applied Lean Manufacturing principles to reduce waste and improve cycle times</span><span data-lang-de>Anwendung von Lean-Manufacturing-Prinzipien zur Reduzierung von Verschwendung</span></li>
+            <li><span data-lang-en>Prepared technical documentation including daily production reports and defect analyses</span><span data-lang-de>Erstellung technischer Dokumentationen und täglicher Produktionsberichte</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item fade">
+        <div class="exp-date">Mar 2021 – Sep 2021</div>
+        <div>
+          <div class="exp-role"><span data-lang-en>Graduate Engineer Trainee</span><span data-lang-de>Ingenieur-Trainee</span></div>
+          <div class="exp-company">🏗 Wonder Cement Ltd. — Rajasthan, India</div>
+          <ul class="exp-bullets">
+            <li><span data-lang-en>Hands-on training in cement manufacturing processes and production planning</span><span data-lang-de>Praktische Ausbildung in Zementherstellungsprozessen und Produktionsplanung</span></li>
+            <li><span data-lang-en>Process improvement, monitoring operations, documentation and reporting</span><span data-lang-de>Prozessverbesserung, Betriebsüberwachung, Dokumentation und Berichterstattung</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label fade">
+      <span data-lang-en>Learning Projects</span>
+      <span data-lang-de>Lernprojekte</span>
+    </div>
+    <h2 class="section-title section-title-3d fade">
+      <span data-lang-en>Academic &amp; Personal Projects</span>
+      <span data-lang-de>Akademische &amp; Persönliche Projekte</span>
+    </h2>
+    <p class="section-subtitle fade">
+      <span data-lang-en>Projects demonstrating mechatronics, robotics, XR development, AI vision, and mechanical design skills developed during my studies.</span>
+      <span data-lang-de>Projekte, die Fähigkeiten in Mechatronik, Robotik, XR-Entwicklung, KI-Vision und Maschinenkonstruktion demonstrieren.</span>
+    </p>
+    <div class="projects-grid">
+
+      <!-- PROJECT: VisionTutor AI (NEW — FEATURED) -->
+      <div class="proj-card fade d1">
+        <div class="proj-img proj-img-ai"><div class="proj-shine"></div>
+          <img src="image/vision.png" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;opacity:0.95;"/>
+          <div class="proj-year-badge">2025</div>
+          <div class="proj-cat-badge">AI / EdTech</div>
+          <!-- Clean native anchor link — Immune to popup blockers & pointer bugs -->
+          <a href="https://github.com/nchaubey12/VisionTutor-AI-Point.-Ask.-Understand" target="_blank" class="proj-github-link">⌥ GitHub ↗</a>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">VisionTutor AI — Point. Ask. Understand.</div>
+          <p class="proj-desc">
+            <span data-lang-en>VisionTutor AI turns any webcam into a real-time homework tutor. Point your camera at any problem — math, science, grammar — and get instant step-by-step explanations, visual diagrams, and practice questions. Live mode enables true conversational tutoring: speak naturally, interrupt freely, and get responses in under a second.</span>
+            <span data-lang-de>VisionTutor AI verwandelt jede Webcam in einen Echtzeit-Hausaufgaben-Tutor. Richte die Kamera auf ein beliebiges Problem – Mathematik, Naturwissenschaften, Grammatik – und erhalte sofortige Schritt-für-Schritt-Erklärungen, visuelle Diagramme und Übungsfragen. Der Live-Modus ermöglicht echtes konversationelles Tutoring.</span>
+          </p>
+          <div class="proj-results-title">
+            <span data-lang-en>Key Features:</span>
+            <span data-lang-de>Hauptmerkmale:</span>
+          </div>
+          <ul class="proj-results">
+            <li><span data-lang-en>Real-time webcam-based problem recognition</span><span data-lang-de>Echtzeit-Webcam-basierte Problemerkennung</span></li>
+            <li><span data-lang-en>Step-by-step AI explanations with visual diagrams</span><span data-lang-de>Schritt-für-Schritt-KI-Erklärungen mit visuellen Diagrammen</span></li>
+            <li><span data-lang-en>Conversational Live Mode — sub-second responses</span><span data-lang-de>Konversationeller Live-Modus – Antworten in unter einer Sekunde</span></li>
+            <li><span data-lang-en>Covers math, science, grammar &amp; more</span><span data-lang-de>Mathematik, Naturwissenschaften, Grammatik und mehr</span></li>
+          </ul>
+          <div class="proj-tags">
+            <span class="proj-tag">Python</span>
+            <span class="proj-tag">Gemini Live API</span>
+            <span class="proj-tag">Gemini 2.5 Flash</span>
+            <span class="proj-tag">Computer Vision</span>
+            <span class="proj-tag">FastAPI</span>
+            <span class="proj-tag">AsyncIO</span>
+            <span class="proj-tag">WebSockets</span>
+            <span class="proj-tag">Google Cloud Run</span>
+            <span class="proj-tag">Docker</span>
+            <span class="proj-tag">Cloud Build</span>
+            <span class="proj-tag">Custom AI Agents</span>
+            <span class="proj-tag">WebRTC</span>
+            <span class="proj-tag">EdTech</span>
+          </div>
+          <div style="display:flex;gap:10px;flex-direction:column;">
+            <!-- Clean native anchor link -->
+            <a href="https://github.com/nchaubey12/VisionTutor-AI-Point.-Ask.-Understand" target="_blank" class="btn-view-code">
+              <span data-lang-en>View on GitHub ↗</span>
+              <span data-lang-de>Auf GitHub ansehen ↗</span>
+            </a>
+            <!-- Clean native anchor link -->
+            <a href="https://www.youtube.com/watch?v=jc_m82hKUJI" target="_blank" style="border-color:rgba(255,0,0,0.35);color:#ff4444;background:rgba(255,0,0,0.06);" class="btn-view-code">
+              <span style="font-size:13px;">▶</span>
+              <span data-lang-en>Watch Demo on YouTube ↗</span>
+              <span data-lang-de>Demo auf YouTube ansehen ↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT: VR Safety Training -->
+      <div class="proj-card fade d2">
+        <div class="proj-img proj-img-vr"><div class="proj-shine"></div>
+          <img src="image/ar.png" style="width:100%;height:100%;object-fit:cover;"/>
+          <div class="proj-year-badge">2025</div><div class="proj-cat-badge">XR / VR</div>
+          <a href="https://github.com/Adichat1111/-VR-Safety-Training-for-3D-Printer-Operation" target="_blank" class="proj-github-link">⌥ GitHub ↗</a>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title"><span data-lang-en>VR Safety Training for 3D Printer Operation</span><span data-lang-de>VR-Sicherheitstraining für 3D-Druckerbetrieb</span></div>
+          <p class="proj-desc">
+            <span data-lang-en>Immersive VR training module for Stratasys 3D printers simulating operational hazards and safety protocols for Meta Quest 3.</span>
+            <span data-lang-de>Immersives VR-Trainingsmodul für Stratasys 3D-Drucker zur Simulation von Betriebsgefahren für Meta Quest 3.</span>
+          </p>
+          <div class="proj-results-title">Key Results:</div>
+          <ul class="proj-results"><li>High-fidelity 3D assets optimised for real-time VR</li><li>Full safety scenario simulation</li><li>Deployed on Meta Quest 3</li></ul>
+          <div class="proj-tags"><span class="proj-tag">SolidWorks</span><span class="proj-tag">Blender</span><span class="proj-tag">Unity</span><span class="proj-tag">C#</span></div>
+          <a href="https://github.com/Adichat1111/-VR-Safety-Training-for-3D-Printer-Operation" target="_blank" class="btn-view-code">
+            <span data-lang-en>View on GitHub ↗</span><span data-lang-de>Auf GitHub ansehen ↗</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- PROJECT: Stair Climbing Robot -->
+      <div class="proj-card fade d3">
+        <div class="proj-img proj-img-robot"><div class="proj-shine"></div>
+          <img src="image/co.png" style="width:100%;height:100%;object-fit:cover;"/>
+          <div class="proj-year-badge">2024</div><div class="proj-cat-badge">Robotics</div>
+          <a href="https://github.com/Adichat1111/lobe4-stair-climbing-robot" target="_blank" class="proj-github-link">⌥ GitHub ↗</a>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">Lobe-4 Stair-Climbing Autonomous Robot</div>
+          <p class="proj-desc">
+            <span data-lang-en>Lobe-shaped differential wheel robot for autonomous stair climbing with LiDAR and camera-based obstacle avoidance in Gazebo.</span>
+            <span data-lang-de>Lobe-förmiger Differentialradroboter für autonomes Treppensteigen mit LiDAR und kamerabasierter Hindernisumgehung in Gazebo.</span>
+          </p>
+          <div class="proj-results-title">Key Results:</div>
+          <ul class="proj-results"><li>Full URDF model from SolidWorks</li><li>Autonomous stair navigation achieved</li><li>LiDAR + camera sensor fusion</li></ul>
+          <div class="proj-tags"><span class="proj-tag">ROS</span><span class="proj-tag">Gazebo</span><span class="proj-tag">Python</span><span class="proj-tag">SolidWorks</span></div>
+          <a href="https://github.com/Adichat1111/lobe4-stair-climbing-robot" target="_blank" class="btn-view-code">
+            <span data-lang-en>View on GitHub ↗</span><span data-lang-de>Auf GitHub ansehen ↗</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- PROJECT: Dryer Door Latch -->
+      <div class="proj-card fade d4">
+        <div class="proj-img proj-img-brake"><div class="proj-shine"></div>
+          <img src="image/door.png" style="width:100%;height:100%;object-fit:cover;"/>
+          <div class="proj-year-badge">2025</div><div class="proj-cat-badge">Mech. Design</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">Dryer Door Push-Latch Mechanism</div>
+          <p class="proj-desc">
+            <span data-lang-en>Topology-optimised SolidWorks push-lock / push-release dryer latch for high-temperature use and ≥ 8,000 cycles. Prototyped in ABS via FDM.</span>
+            <span data-lang-de>Topologieoptimiertes Push-Lock/Push-Release-Wäschetrocknerschloss für hohe Temperaturen und ≥ 8.000 Zyklen. Prototyp in ABS via FDM.</span>
+          </p>
+          <div class="proj-results-title">Key Results:</div>
+          <ul class="proj-results"><li>Optimised for low weight &amp; cost</li><li>≥8,000 cycle lifespan design</li><li>FDM prototype validated</li></ul>
+          <div class="proj-tags"><span class="proj-tag">SolidWorks</span><span class="proj-tag">Topology Opt.</span><span class="proj-tag">FDM / AM</span></div>
+          <a href="https://github.com/Adichat1111" target="_blank" class="btn-view-code">
+            <span data-lang-en>View on GitHub ↗</span><span data-lang-de>Auf GitHub ansehen ↗</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- PROJECT: Soil Simulation -->
+      <div class="proj-card fade d5">
+        <div class="proj-img proj-img-soil"><div class="proj-shine"></div>
+          <img src="image/soil.png" style="width:100%;height:100%;object-fit:cover;"/>
+          <div class="proj-year-badge">2024</div><div class="proj-cat-badge">Simulation</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">Mechatronic System Simulation – Soil Moisture</div>
+          <p class="proj-desc">
+            <span data-lang-en>Simulation of soil moisture comparing bare vs. mulched soil using Hydrus 2D and MATLAB/Simulink.</span>
+            <span data-lang-de>Simulation der Bodenfeuchtigkeit – Vergleich von nacktem und gemulchtem Boden mit Hydrus 2D und MATLAB/Simulink.</span>
+          </p>
+          <div class="proj-results-title">Key Results:</div>
+          <ul class="proj-results"><li>~20% higher moisture in mulched soil</li><li>Validated via Hydrus 2D model</li><li>MATLAB data analysis pipeline</li></ul>
+          <div class="proj-tags"><span class="proj-tag">Hydrus 2D</span><span class="proj-tag">MATLAB</span><span class="proj-tag">Simulink</span></div>
+          <a href="https://github.com/Adichat1111" target="_blank" class="btn-view-code">
+            <span data-lang-en>View on GitHub ↗</span><span data-lang-de>Auf GitHub ansehen ↗</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="fade">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><div class="footer-brand-icon">AC</div><div class="footer-brand-name">Aditya Chaturvedi</div></div>
+        <p class="footer-desc">
+          <span data-lang-en>Mechatronics Engineer specializing in robotics, automation, CAD/CAE, AI vision and XR development. Currently pursuing M.Eng. at Deggendorf Institute of Technology.</span>
+          <span data-lang-de>Mechatroniker, spezialisiert auf Robotik, Automatisierung, CAD/CAE, KI-Vision und XR-Entwicklung. Derzeit M.Eng. an der TH Deggendorf.</span>
+        </p>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigation</div>
+        <ul class="footer-links">
+          <li><a href="#about"><span data-lang-en>About</span><span data-lang-de>Über mich</span></a></li>
+          <li><a href="#projects"><span data-lang-en>Projects</span><span data-lang-de>Projekte</span></a></li>
+          <li></li>
+          <li><a href="#experience"><span data-lang-en>Experience</span><span data-lang-de>Erfahrung</span></a></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Aditya Chaturvedi. All rights reserved.</span>
+      <span>Munich, Germany</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── THEME TOGGLE ──
+function toggleTheme() {
+  const root = document.documentElement;
+  const btn = document.getElementById('themeToggle');
+  const isLight = root.getAttribute('data-theme') === 'light';
+  root.setAttribute('data-theme', isLight ? 'dark' : 'light');
+  if (isLight) { root.removeAttribute('data-theme'); btn.textContent = '☀'; }
+  else { btn.textContent = '🌙'; }
+  localStorage.setItem('theme', root.getAttribute('data-theme') || 'dark');
+}
+(function() {
+  const saved = localStorage.getItem('theme');
+  const btn = document.getElementById('themeToggle');
+  if (saved === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+    if (btn) btn.textContent = '🌙';
+  }
+})();
+
+// ── LANGUAGE TOGGLE ──
+function setLang(lang) {
+  document.body.setAttribute('data-lang', lang);
+  document.getElementById('btnEN').classList.toggle('active', lang === 'en');
+  document.getElementById('btnDE').classList.toggle('active', lang === 'de');
+  localStorage.setItem('lang', lang);
+}
+(function() { setLang(localStorage.getItem('lang') || 'en'); })();
+
+// ── SMOOTH SCROLL FOR CLICK-TO-SECTION ──
+// Browser handles wheel natively (no hijacking = no jerk).
+// This only animates programmatic jumps (nav clicks, CTA buttons).
+(function() {
+  const DUR = 600; // ms
+  // cubic-bezier(0.25, 1, 0.5, 1) — snappy ease-out
+  const ease = t => t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t+2,2)/2;
+
+  function clamp(v,lo,hi){ return Math.max(lo,Math.min(hi,v)); }
+
+  window._scrollTo = function(targetY) {
+    const startY = window.scrollY;
+    const dist   = targetY - startY;
+    if (Math.abs(dist) < 2) return;
+    const t0 = performance.now();
+    function step(now) {
+      const t = clamp((now - t0) / DUR, 0, 1);
+      window.scrollTo(0, startY + dist * ease(t));
+      if (t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  };
+})();
+
+// ── SCROLL REVEAL ──
+const _fadeObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); });
+}, { rootMargin: '0px 0px -40px 0px', threshold: 0.08 });
+document.querySelectorAll('.fade').forEach(el => _fadeObs.observe(el));
+
+// ── ACTIVE NAV HIGHLIGHT ──
+const _sections = document.querySelectorAll('section[id]');
+const _navLinks = document.querySelectorAll('.nav-links a');
+let _ticking = false;
+window.addEventListener('scroll', () => {
+  if (_ticking) return;
+  _ticking = true;
+  requestAnimationFrame(() => {
+    let cur = '';
+    _sections.forEach(s => { if (window.scrollY >= s.offsetTop - 90) cur = s.id; });
+    _navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+    _ticking = false;
+  });
+}, { passive: true });
+
+// ── NAV SCROLL ON CLICK ──
+_navLinks.forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) window._scrollTo(t.getBoundingClientRect().top + window.scrollY - 60);
+  });
+});
+
+// ── CTA / HERO ANCHOR LINKS ──
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  if (a.closest('.nav-links')) return; // already handled
+  a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    if (href.length > 1) {
+      const t = document.querySelector(href);
+      if (t) { e.preventDefault(); window._scrollTo(t.getBoundingClientRect().top + window.scrollY - 60); }
+    }
+  });
+});
+
+// ── NAV SCROLL SHADOW ──
+(function() {
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.borderBottomColor = window.scrollY > 20
+      ? 'var(--accent-border)'
+      : 'var(--border)';
+  }, { passive: true });
+})();
+
+// ══════════════════════════════════════════
+// 3D PORTFOLIO ENGINE
+// ══════════════════════════════════════════
+
+// ── SCROLL PROGRESS BAR ──
+(function() {
+  const bar = document.getElementById('scroll-progress');
+  function updateProgress() {
+    const scrolled = window.scrollY;
+    const total = document.body.scrollHeight - window.innerHeight;
+    bar.style.width = (scrolled / total * 100) + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+})();
+
+// ── CURSOR GLOW TRACKER ──
+(function() {
+  const glow = document.getElementById('cursor-glow');
+  let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+  let cx = mx, cy = my;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animGlow() {
+    cx += (mx - cx) * 0.08;
+    cy += (my - cy) * 0.08;
+    glow.style.left = cx + 'px';
+    glow.style.top  = cy + 'px';
+    requestAnimationFrame(animGlow);
+  }
+  animGlow();
+})();
+
+// ── FLOATING PARTICLES GENERATOR ──
+(function() {
+  const bg = document.getElementById('particlesBg');
+  if (!bg) return;
+  const colors = [
+    'rgba(92,143,255,0.5)',
+    'rgba(124,94,247,0.4)',
+    'rgba(34,197,94,0.3)',
+    'rgba(122,173,255,0.4)',
+  ];
+  for (let i = 0; i < 30; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 4 + 1;
+    const left = Math.random() * 100;
+    const dur  = Math.random() * 15 + 8;
+    const delay = Math.random() * 12;
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    p.style.cssText = `
+      width:${size}px;height:${size}px;
+      left:${left}%;bottom:-10px;
+      background:${color};
+      animation-duration:${dur}s;
+      animation-delay:${delay}s;
+    `;
+    bg.appendChild(p);
+  }
+})();
+
+// ── HERO MOUSE PARALLAX 3D WORLD TILT (Optimized) ──
+(function() {
+  const scene = document.querySelector('.hero-3d-scene');
+  const heroWrap = document.getElementById('heroWrap');
+  if (!scene || !heroWrap) return;
+  if (!window.matchMedia('(hover:hover)').matches) return;
+
+  let targetRX = 0, targetRY = 0;
+  let currentRX = 0, currentRY = 0;
+  let animId = null;
+  let isHovered = false;
+
+  document.addEventListener('mousemove', e => {
+    isHovered = true;
+    const rect = scene.getBoundingClientRect();
+    if (e.clientY < rect.top - 200 || e.clientY > rect.bottom + 200) {
+      targetRX = 0; targetRY = 0;
+      isHovered = false;
+    } else {
+      const x = (e.clientX / window.innerWidth  - 0.5) * 2;
+      const y = (e.clientY / window.innerHeight - 0.5) * 2;
+      targetRY =  x * 4;
+      targetRX = -y * 2.5;
+    }
+    if (!animId) animId = requestAnimationFrame(animHero);
+  });
+
+  document.addEventListener('mouseleave', () => {
+    isHovered = false;
+    targetRX = 0; targetRY = 0;
+    if (!animId) animId = requestAnimationFrame(animHero);
+  });
+
+  function animHero() {
+    currentRX += (targetRX - currentRX) * 0.06;
+    currentRY += (targetRY - currentRY) * 0.06;
+    if (heroWrap) {
+      heroWrap.style.transform = `rotateX(${currentRX}deg) rotateY(${currentRY}deg)`;
+    }
+
+    // Shut down animation loop if at rest to prevent rendering bugs
+    if (!isHovered && Math.abs(currentRX) < 0.01 && Math.abs(currentRY) < 0.01) {
+      if (heroWrap) heroWrap.style.transform = '';
+      animId = null;
+      return;
+    }
+    animId = requestAnimationFrame(animHero);
+  }
+})();
+
+// ── DEPTH PARALLAX ON SCROLL for floating shapes ──
+(function() {
+  const shapes = document.querySelectorAll('.shape-3d');
+  const speeds = [0.3, -0.2, 0.4, -0.15, 0.25];
+  function updateShapes() {
+    const sy = window.scrollY;
+    shapes.forEach((s, i) => {
+      const speed = speeds[i % speeds.length];
+      s.style.transform = `translateY(${sy * speed}px)`;
+    });
+  }
+  window.addEventListener('scroll', updateShapes, { passive: true });
+})();
+
+// ── 3D CARD MOUSE TILT (Highly Optimized for WebKit Clickability) ──
+(function() {
+  const cards = document.querySelectorAll('.proj-card, .edu-card, .stack-card, .cert-item');
+  if (!window.matchMedia('(hover:hover)').matches) return;
+  
+  cards.forEach(card => {
+    let animId = null;
+    let targetX = 0, targetY = 0, targetS = 1;
+    let currentX = 0, currentY = 0, currentS = 1;
+    let isHovered = false;
+
+    card.addEventListener('mouseenter', () => {
+      isHovered = true;
+      targetS = 1.02;
+      if (!animId) animId = requestAnimationFrame(animCard);
+    });
+
+    card.addEventListener('mouseleave', () => {
+      isHovered = false;
+      targetX = 0; targetY = 0; targetS = 1;
+      if (!animId) animId = requestAnimationFrame(animCard);
+    });
+
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width  - 0.5;
+      const y = (e.clientY - r.top)  / r.height - 0.5;
+      targetX = -y * 10;
+      targetY =  x * 10;
+    });
+
+    function animCard() {
+      currentX += (targetX - currentX) * 0.12;
+      currentY += (targetY - currentY) * 0.12;
+      currentS += (targetS - currentS) * 0.12;
+      const lift = (targetX !== 0 || targetY !== 0) ? -6 : 0;
+
+      card.style.transform = `perspective(800px) rotateX(${currentX}deg) rotateY(${currentY}deg) scale(${currentS}) translateY(${lift}px)`;
+      
+      // Stop animation loop completely when idle. Prevents WebKit pointer-events 3D rendering bug!
+      if (!isHovered && Math.abs(currentX) < 0.01 && Math.abs(currentY) < 0.01 && Math.abs(currentS - 1) < 0.001) {
+        card.style.transform = ''; 
+        animId = null;
+        return; 
+      }
+      animId = requestAnimationFrame(animCard);
+    }
+  });
+})();
+
+// ── 3D SECTION TITLE PARALLAX ──
+(function() {
+  const titles = document.querySelectorAll('.section-title-3d');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.transform = 'translateY(0) translateZ(0)';
+        entry.target.style.opacity = '1';
+      }
+    });
+  }, { threshold: 0.3 });
+  titles.forEach(t => obs.observe(t));
+})();
+
+// ── SCROLL-TRIGGERED 3D REVEALS ──
+(function() {
+  const items = document.querySelectorAll('.exp-item, .cert-item');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.style.transform = 'translateX(0) translateZ(0)';
+          entry.target.style.opacity = '1';
+        }, i * 60);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  items.forEach(item => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateX(-20px) translateZ(-10px)';
+    item.style.transition = 'transform 0.5s cubic-bezier(0.25,1,0.5,1), opacity 0.5s ease';
+    obs.observe(item);
+  });
+})();
+
+
+// ── MOUSE-TRACK SHINE on project card images ──
+(function() {
+  document.querySelectorAll('.proj-card').forEach(card => {
+    const shine = card.querySelector('.proj-shine');
+    if (!shine) return;
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width  * 100).toFixed(1);
+      const y = ((e.clientY - r.top)  / r.height * 100).toFixed(1);
+      shine.style.setProperty('--mx', x + '%');
+      shine.style.setProperty('--my', y + '%');
+    });
+  });
+})();
+
+// ── 3D PARALLAX on scroll for section elements ──
+(function() {
+  const parallaxEls = [
+    { el: document.querySelector('.hero-name'),     speed: 0.04 },
+    { el: document.querySelector('.hero-role'),     speed: 0.06 },
+    { el: document.querySelector('.hero-location'), speed: 0.03 },
+    { el: document.querySelector('.hero-desc'),     speed: 0.02 },
+  ].filter(x => x.el);
+
+  let baseScroll = 0;
+  window.addEventListener('scroll', () => {
+    const sy = window.scrollY;
+    parallaxEls.forEach(({ el, speed }) => {
+      const offset = -sy * speed;
+      el.style.transform = `translateY(${offset}px) translateZ(0)`;
+    });
+  }, { passive: true });
+})();
+
+// ── 3D FLOATING SHAPE MOUSE PARALLAX ──
+(function() {
+  const shapes = document.querySelectorAll('.shape-3d');
+  if (!window.matchMedia('(hover:hover)').matches) return;
+  let mx = 0, my = 0;
+  document.addEventListener('mousemove', e => {
+    mx = (e.clientX / window.innerWidth  - 0.5);
+    my = (e.clientY / window.innerHeight - 0.5);
+  });
+  const depths = [60, 40, 80, 30, 50];
+  function animShapes() {
+    shapes.forEach((s, i) => {
+      const d = depths[i % depths.length];
+      const tx = mx * d;
+      const ty = my * d * 0.6;
+      s.style.transform = `translate(${tx}px, ${ty}px) translateZ(${d * 0.5}px)`;
+    });
+    requestAnimationFrame(animShapes);
+  }
+  animShapes();
+})();
+
+// ── 3D NAV BRAND LOGO tilt on hover ──
+(function() {
+  const icon = document.querySelector('.nav-icon');
+  if (!icon) return;
+  icon.addEventListener('mousemove', e => {
+    const r = icon.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width  - 0.5;
+    const y = (e.clientY - r.top)  / r.height - 0.5;
+    icon.style.transform = `rotateY(${x * 30}deg) rotateX(${-y * 30}deg) scale(1.15) translateZ(4px)`;
+  });
+  icon.addEventListener('mouseleave', () => {
+    icon.style.transform = '';
+  });
+})();
+
+// ── DEPTH-AWARE PARALLAX for photo card (Optimized) ──
+(function() {
+  const wrap = document.querySelector('.photo-card-wrap');
+  const card = document.querySelector('.photo-card');
+  if (!wrap || !card) return;
+  if (!window.matchMedia('(hover:hover)').matches) return;
+
+  let tx = 0, ty = 0, rx = 0, ry = 0;
+  let ctx = 0, cty = 0, crx = 0, cry = 0;
+  let isHovered = false;
+  let animId = null;
+
+  document.addEventListener('mousemove', e => {
+    isHovered = true;
+    const rect = wrap.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top  + rect.height / 2;
+    const dx = (e.clientX - cx) / window.innerWidth;
+    const dy = (e.clientY - cy) / window.innerHeight;
+    rx = -dy * 12;
+    ry =  dx * 12;
+    tx =  dx * 10;
+    ty =  dy * 6;
+    if (!animId) animId = requestAnimationFrame(animPhoto);
+  });
+
+  document.addEventListener('mouseleave', () => {
+    isHovered = false;
+    tx = 0; ty = 0; rx = 0; ry = 0;
+    if (!animId) animId = requestAnimationFrame(animPhoto);
+  });
+
+  function animPhoto() {
+    ctx += (tx  - ctx)  * 0.06;
+    cty += (ty  - cty)  * 0.06;
+    crx += (rx  - crx)  * 0.06;
+    cry += (ry  - cry)  * 0.06;
+    wrap.style.transform = `perspective(800px) rotateX(${crx}deg) rotateY(${cry}deg) translate(${ctx}px,${cty}px)`;
+
+    if (!isHovered && Math.abs(ctx) < 0.01 && Math.abs(cty) < 0.01 && Math.abs(crx) < 0.01 && Math.abs(cry) < 0.01) {
+      wrap.style.transform = '';
+      animId = null;
+      return;
+    }
+    animId = requestAnimationFrame(animPhoto);
+  }
+})();
+
+</script>
+</body>
+</html>
