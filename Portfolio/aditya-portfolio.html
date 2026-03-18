@@ -408,10 +408,19 @@ section{padding:80px 0}
 .edu-gpa{display:inline-block;padding:4px 14px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;border-radius:20px;font-size:11px;font-weight:700;margin-bottom:14px;letter-spacing:.03em;}
 .edu-desc{font-size:12px;color:var(--muted);line-height:1.7}
 .cert-list{display:flex;flex-direction:column;gap:10px}
+
+/* ── CERT ITEMS (Fixed for Links) ── */
 .cert-item{
   display:flex;align-items:center;gap:14px;
   background:var(--card);border:1px solid var(--border);border-radius:10px;
   padding:16px 18px;transition:all var(--dur) var(--ease);
+  position: relative; /* Essential for overlay */
+}
+.cert-link-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 100;
+  cursor: pointer;
 }
 .cert-item:hover{
   border-color:var(--accent-border);
@@ -794,34 +803,28 @@ footer{
   transform-style: preserve-3d;
 }
 .proj-card .proj-body {
-  transform: translateZ(8px);
-  transform-style: preserve-3d;
+  transform: translateZ(25px);
   position: relative;
-  z-index: 2;
+  z-index: 20;
   pointer-events: auto; /* Ensure body catches events */
 }
 .proj-card .proj-img {
-  transform: translateZ(0px);
-  transform-style: preserve-3d; /* Allows buttons inside to pop out */
-}
-.proj-card .proj-title {
-  transform: translateZ(4px);
-  display: block;
+  transform: translateZ(10px);
   position: relative;
+  z-index: 10;
 }
-.proj-card .proj-cat-badge, .proj-card .proj-year-badge {
-  transform: translateZ(12px);
-}
+/* Force links to be clickable by keeping them structurally flat on their floating parent */
 .proj-card .proj-github-link, .proj-card .btn-view-code {
-  transform: translateZ(20px); /* Highest Z translation */
-  z-index: 100; /* Highest Z layer */
-  pointer-events: auto;
+  position: relative;
+  z-index: 100;
+  pointer-events: auto !important;
+  cursor: pointer !important;
 }
 .proj-card .proj-github-link:hover {
-  transform: translateZ(20px) translateY(-2px) scale(1.04);
+  transform: translateY(-3px) scale(1.05);
 }
 .proj-card .btn-view-code:hover {
-  transform: translateZ(20px) translateY(-2px);
+  transform: translateY(-3px) scale(1.02);
 }
 
 /* ── 3D EDU CARDS ── */
@@ -838,7 +841,6 @@ footer{
 
 /* ── 3D NAV DEPTH ── */
 nav {
-  transform-style: preserve-3d;
   box-shadow:
     0 1px 0 rgba(92,143,255,0.1),
     0 4px 0 rgba(92,143,255,0.05),
@@ -865,17 +867,8 @@ nav {
   transform: translateZ(20px);
 }
 
-/* ── 3D CERT ITEMS ── */
-.cert-item {
-  transform-style: preserve-3d;
-}
-.cert-icon {
-  transform: translateZ(4px);
-}
-
 /* ── 3D EXP ITEM ── */
 .exp-item {
-  transform-style: preserve-3d;
   position: relative;
 }
 .exp-item::before {
@@ -949,28 +942,45 @@ footer::before {
 /* ── LIGHT MODE 3D adjustments ── */
 [data-theme="light"] .section-title-3d {
   text-shadow:
-    1px 1px 0 rgba(29,78,216,0.2),
-    2px 2px 0 rgba(29,78,216,0.12),
-    3px 3px 8px rgba(0,0,0,0.08);
+    1px 1px 0 rgba(255,255,255,1),
+    2px 2px 0 var(--accent-dim),
+    3px 3px 6px rgba(15,23,42,0.1);
+}
+[data-theme="light"] .hero-name {
+  text-shadow:
+    1px 1px 0 rgba(255,255,255,1),
+    2px 2px 0 var(--accent-dim),
+    3px 3px 8px rgba(15,23,42,0.15);
 }
 [data-theme="light"] #cursor-glow {
-  background: radial-gradient(circle, rgba(29,78,216,0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(79,70,229,0.06) 0%, transparent 70%);
 }
 [data-theme="light"] .grid-3d-overlay {
   background-image:
-    linear-gradient(rgba(29,78,216,0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(29,78,216,0.07) 1px, transparent 1px);
+    linear-gradient(rgba(79,70,229,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79,70,229,0.05) 1px, transparent 1px);
 }
 [data-theme="light"] body::before {
   background:
-    radial-gradient(ellipse 80% 50% at 20% 10%, rgba(29,78,216,0.10) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(109,40,217,0.08) 0%, transparent 55%);
+    radial-gradient(ellipse 80% 50% at 20% 10%, rgba(79,70,229,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(124,58,237,0.05) 0%, transparent 55%);
 }
 [data-theme="light"] #about {
-  background: linear-gradient(180deg, rgba(29,78,216,0.06) 0%, transparent 50%);
+  background: linear-gradient(180deg, rgba(79,70,229,0.04) 0%, transparent 50%);
 }
 [data-theme="light"] .btn-view-code, [data-theme="light"] .proj-github-link {
-  background: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.95);
+  color: var(--text);
+}
+[data-theme="light"] .btn-view-code:hover, [data-theme="light"] .proj-github-link:hover {
+  background: var(--accent);
+  color: #ffffff;
+}
+[data-theme="light"] .proj-year-badge {
+  color: #ffffff;
+}
+[data-theme="light"] .photo-badge {
+  color: #ffffff;
 }
 
 /* ══════════════════════════════════════════
@@ -1027,8 +1037,8 @@ section::before {
   transform-style: preserve-3d;
 }
 .nav-icon:hover {
-  transform: rotateY(20deg) rotateX(-10deg) scale(1.15) translateZ(4px);
-  box-shadow: -4px 4px 20px var(--accent-glow), 4px -4px 12px rgba(124,94,247,0.2);
+  transform: rotateY(20deg) rotateX(-10deg) scale(1.15) translateZ(10px);
+  box-shadow: -6px 6px 20px var(--accent-glow), 6px -6px 15px rgba(124,94,247,0.3);
 }
 
 /* ── 3D SOCIAL BUTTONS ── */
@@ -1057,21 +1067,6 @@ section::before {
     0 4px 12px rgba(92,143,255,0.25);
   transform: translateZ(6px);
   display: inline-block;
-}
-
-/* ── 3D HERO NAME DEPTH ── */
-.hero-name {
-  text-shadow:
-    1px 1px 0 rgba(92,143,255,0.15),
-    2px 2px 0 rgba(92,143,255,0.10),
-    3px 3px 8px rgba(0,0,0,0.3);
-  transition: text-shadow 0.3s ease;
-}
-.hero-name:hover {
-  text-shadow:
-    2px 2px 0 rgba(92,143,255,0.2),
-    4px 4px 0 rgba(92,143,255,0.12),
-    6px 6px 16px rgba(0,0,0,0.4);
 }
 
 /* ── 3D BTN TEAL DEPTH ── */
@@ -1123,8 +1118,8 @@ section::before {
   transition: opacity 0.2s ease;
   background: radial-gradient(
     circle at var(--mx, 50%) var(--my, 50%),
-    rgba(255,255,255,0.08) 0%,
-    transparent 60%
+    rgba(255,255,255,0.1) 0%,
+    transparent 70%
   );
 }
 .proj-card:hover .proj-shine { opacity: 1; }
@@ -1138,8 +1133,10 @@ section::before {
 <!-- 3D CURSOR GLOW -->
 <div id="cursor-glow"></div>
 
-<!-- 3D GRID OVERLAY -->
-<div class="grid-3d-overlay"></div>
+<!-- 3D GRID OVERLAY (Tron Style Floor) -->
+<div class="grid-3d-wrapper">
+  <div class="grid-3d-overlay"></div>
+</div>
 
 <!-- 3D FLOATING PARTICLES -->
 <div class="particles-bg" id="particlesBg"></div>
@@ -1173,7 +1170,7 @@ section::before {
     </div>
     <!-- Theme Toggle -->
     <button class="nav-icon-btn" id="themeToggle" title="Toggle theme" onclick="toggleTheme()">☀</button>
-    <a href="Aditya_Chaturvedi_CV.pdf" download="Aditya_Chaturvedi_CV.pdf" class="nav-btn">
+    <a href="Aditya_CV1.pdf" download="Aditya_CV1.pdf" class="nav-btn">
       <span>📄</span>
       <span data-lang-en>Download CV</span>
       <span data-lang-de>Lebenslauf</span>
@@ -1263,8 +1260,7 @@ section::before {
 
         </div>
         <div class="hero-contact-row fade d5">
-          <a href="/cdn-cgi/l/email-protection#ea8b8e839e938bc4dbdfdedadadbdbaa8d878b8386c4898587">✉ <span class="__cf_email__" data-cfemail="3455505d404d551a05010004040505745359555d581a575b59">aditya.1540011@gmail.com</span></a>
-      
+          <a href="mailto:aditya.1540011@gmail.com">✉ aditya.1540011@gmail.com</a>
         </div>
         <div class="social-row fade d5">
           <span><span data-lang-en>Connect with me:</span><span data-lang-de>Verbinden:</span></span>
@@ -1346,9 +1342,24 @@ section::before {
           <span data-lang-de>Zertifikate</span>
         </div>
         <div class="cert-list">
-          <a href="https://verify.skilljar.com/c/x4hkocjpa59h" target="_blank" class="cert-item fade d1" style="text-decoration:none;cursor:pointer;"><div class="cert-icon">🎓</div><div class="cert-info"><div class="cert-name">Building with the Claude API</div><div class="cert-org">Anthropic</div></div><div class="cert-year" style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">2025<span style="font-size:10px;color:var(--teal);white-space:nowrap;">View ↗</span></div></a>
-          <a href="https://verify.skilljar.com/c/bhuu4uaf29ze" target="_blank" class="cert-item fade d2" style="text-decoration:none;cursor:pointer;"><div class="cert-icon">🎓</div><div class="cert-info"><div class="cert-name">AI Fluency for Students</div><div class="cert-org">Certificate of Completion</div></div><div class="cert-year" style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">2025<span style="font-size:10px;color:var(--teal);white-space:nowrap;">View ↗</span></div></a>
-          <a href="https://www.udemy.com/certificate/UC-86d0c490-7911-4cc2-a7de-a0bad724c934/" target="_blank" class="cert-item fade d3" style="text-decoration:none;cursor:pointer;"><div class="cert-icon">🤖</div><div class="cert-info"><div class="cert-name">ROS 2 for Beginners (ROS Jazzy)</div><div class="cert-org">Udemy</div></div><div class="cert-year" style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">2025<span style="font-size:10px;color:var(--teal);white-space:nowrap;">View ↗</span></div></a>
+          <div class="cert-item fade d1">
+            <a href="https://verify.skilljar.com/c/x4hkocjpa59h" target="_blank" class="cert-link-overlay"></a>
+            <div class="cert-icon">🎓</div>
+            <div class="cert-info"><div class="cert-name">Building with the Claude API</div><div class="cert-org">Anthropic</div></div>
+            <div class="cert-year" style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">2025<span style="font-size:10px;color:var(--accent);white-space:nowrap;">View ↗</span></div>
+          </div>
+          <div class="cert-item fade d2">
+            <a href="https://verify.skilljar.com/c/bhuu4uaf29ze" target="_blank" class="cert-link-overlay"></a>
+            <div class="cert-icon">🎓</div>
+            <div class="cert-info"><div class="cert-name">AI Fluency for Students</div><div class="cert-org">Certificate of Completion</div></div>
+            <div class="cert-year" style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">2025<span style="font-size:10px;color:var(--accent);white-space:nowrap;">View ↗</span></div>
+          </div>
+          <div class="cert-item fade d3">
+            <a href="https://www.udemy.com/certificate/UC-86d0c490-7911-4cc2-a7de-a0bad724c934/" target="_blank" class="cert-link-overlay"></a>
+            <div class="cert-icon">🤖</div>
+            <div class="cert-info"><div class="cert-name">ROS 2 for Beginners (ROS Jazzy)</div><div class="cert-org">Udemy</div></div>
+            <div class="cert-year" style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">2025<span style="font-size:10px;color:var(--accent);white-space:nowrap;">View ↗</span></div>
+          </div>
           <div class="cert-item fade d4"><div class="cert-icon">🏆</div><div class="cert-info"><div class="cert-name">All-India Rank #07 – SAEINDIA BAJA</div><div class="cert-org">1st in CAE &amp; Sled Pull</div></div><div class="cert-year">2018</div></div>
           <div class="cert-item fade d5"><div class="cert-icon">🥈</div><div class="cert-info"><div class="cert-name">All-India Rank #24 – SAEINDIA BAJA</div><div class="cert-org">3rd in Cost Event</div></div><div class="cert-year">2017</div></div>
         </div>
@@ -1455,7 +1466,7 @@ section::before {
           <img src="image/vision.png" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;opacity:0.95;"/>
           <div class="proj-year-badge">2025</div>
           <div class="proj-cat-badge">AI / EdTech</div>
-          <!-- Clean native anchor link — Immune to popup blockers & pointer bugs -->
+          <!-- Clean native anchor link -->
           <a href="https://github.com/nchaubey12/VisionTutor-AI-Point.-Ask.-Understand" target="_blank" class="proj-github-link">⌥ GitHub ↗</a>
         </div>
         <div class="proj-body">
@@ -1857,7 +1868,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 
 // ── 3D CARD MOUSE TILT (Highly Optimized for WebKit Clickability) ──
 (function() {
-  const cards = document.querySelectorAll('.proj-card, .edu-card, .stack-card, .cert-item');
+  const cards = document.querySelectorAll('.proj-card, .edu-card, .stack-card');
   if (!window.matchMedia('(hover:hover)').matches) return;
   
   cards.forEach(card => {
